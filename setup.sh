@@ -44,6 +44,9 @@ source ~/.zshrc
 
 read -p "Want vagrant?" yn
 
+## Install NVM
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+
 ### Exit if no
 if [ "$yn" = "n" ]
 then
@@ -54,5 +57,4 @@ fi
 cd ~/Downloads;
 wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb;
 sudo dpkg -i vagrant_1.7.4_x86_64.deb
-sudo apt-get install virtualbox;
 cd -; 
