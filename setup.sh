@@ -1,11 +1,13 @@
 #!/bin/bash
 
 ## Install basic utilities
-sudo apt-get install vim git curl zsh
+sudo apt-get install -y vim git curl zsh
 
 ## LAMP Stack
-sudo apt-get install apache2 php5 mysql-server libapache2-mod-auth-mysql php5-mysql libapache2-mod-php5 php5-mcrypt php5-curl phpmyadmin
+sudo apt-get install -y apache2 php5 mysql-server libapache2-mod-auth-mysql php5-mysql libapache2-mod-php5 php5-mcrypt php5-curl phpmyadmin
 
+# Install Redis
+sudo apt-get install -y redis-server
 ### Enable PHP Mcrypt extension
 sudo php5enmod mcrypt
 
