@@ -13,3 +13,6 @@ sudo phpenmod mcrypt
 sudo add-apt-repository -y ppa:gnome-terminator
 sudo apt-get update
 sudo apt-get -y install terminator
+
+### Add terminator config
+cp configs/terminator/config ~/.config/terminator
