@@ -21,7 +21,7 @@ cp configs/terminator/config ~/.config/terminator
 read -p "Do you wish to install this dotfiles?" yn
 
 ### Exit if no
-if [ "$1" = "n" ]
+if [ "$yn" = "n" ]
 then
 	exit;
 fi
@@ -34,4 +34,19 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
 ~/.scm_breeze/install.sh
-source ~/.zshrc 
+source ~/.zshrc
+
+read -p "Want vagrant?" yn
+
+### Exit if no
+if [ "$yn" = "n" ]
+then
+        exit;
+fi
+
+## Install Vagrant
+cd ~/Downloads;
+wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb;
+sudo dpkg -i vagrant_1.7.4_x86_64.deb
+sudo apt-get install virtualbox;
+cd -; 
