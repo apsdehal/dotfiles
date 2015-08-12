@@ -23,6 +23,11 @@ cp configs/terminator/config ~/.config/terminator
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
+## Add ap-hotspot
+sudo add-apt-repository -y ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get -y install ap-hotspot
+
 ## Ask if dotfiles are to be copied
 read -p "Do you wish to install this dotfiles?" yn
 
