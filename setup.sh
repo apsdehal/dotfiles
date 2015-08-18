@@ -8,6 +8,7 @@ sudo apt-get install -y apache2 php5 mysql-server libapache2-mod-auth-mysql php5
 
 # Install Redis
 sudo apt-get install -y redis-server
+
 ### Enable PHP Mcrypt extension
 sudo php5enmod mcrypt
 
@@ -17,11 +18,12 @@ sudo apt-get update
 sudo apt-get -y install terminator
 
 ### Add terminator config
-cp configs/terminator/config ~/.config/terminator
+mkdir ~/.config/terminator
+cp configs/terminator/config ~/.config/terminator/
 
 ## Install Composer
 curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+sudo mv composer.phar /usr/local/bin/composer
 
 ## Add ap-hotspot
 sudo add-apt-repository -y ppa:nilarimogard/webupd8
@@ -29,7 +31,7 @@ sudo apt-get update
 sudo apt-get -y install ap-hotspot
 
 ## Ask if dotfiles are to be copied
-read -p "Do you wish to install this dotfiles?" yn
+read -p "Do you wish to install this dotfiles? (y/n)" yn
 
 ### Exit if no
 if [ "$yn" = "n" ]
@@ -37,29 +39,31 @@ then
 	exit;
 fi
 
-### Install Oh My Zsh
-
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 ### Install SCM Breeze
 
 git clone git://github.com/ndbroadbent/scm_breeze.git ~/.scm_breeze
 ~/.scm_breeze/install.sh
 source ~/.zshrc
 
-read -p "Want vagrant?" yn
-
 ## Install NVM
+
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
 
-### Exit if no
-if [ "$yn" = "n" ]
-then
-        exit;
-fi
+read -p "Want vagrant? (y/n)" yn
 
+### Exit if no
+if [ "$yn" = "y" ]
+then
+ 
 ## Install Vagrant
 cd ~/Downloads;
 wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb;
 sudo dpkg -i vagrant_1.7.4_x86_64.deb
-cd -; 
+cd -;
+
+fi
+
+### Install Oh My Zsh
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+ 
