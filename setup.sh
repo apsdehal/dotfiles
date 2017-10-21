@@ -25,13 +25,18 @@ cp configs/terminator/config ~/.config/terminator/
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
+## Copy jupyter config
+## Eventually we should have jupyter via anaconda
+mkdir -p ~/.jupyter/custom
+cp configs/jupyter/custom/custom.js ~/.jupyter/custom/
+
 ## Add ap-hotspot
 sudo add-apt-repository -y ppa:nilarimogard/webupd8
 sudo apt-get update
 sudo apt-get -y install ap-hotspot
 
 ## Ask if dotfiles are to be copied
-read -p "Do you wish to install this dotfiles? (y/n)" yn
+read -p "Do you wish to install copy dotfiles? (y/n)" yn
 
 ### Exit if no
 if [ "$yn" = "n" ]
@@ -54,7 +59,11 @@ read -p "Want vagrant? (y/n)" yn
 ### Exit if no
 if [ "$yn" = "y" ]
 then
- 
+
+## Install Anaconda
+
+curl -o- https://repo.continuum.io/archive/Anaconda3-5.0.0.1-Linux-x86_64.sh | bash
+
 ## Install Vagrant
 cd ~/Downloads;
 wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb;
@@ -66,4 +75,3 @@ fi
 ### Install Oh My Zsh
 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
- 
